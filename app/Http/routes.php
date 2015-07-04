@@ -16,10 +16,10 @@ $app->post('/makes',       ['uses' => 'MakesController@store',  'as' => 'makes.s
 $app->get('/makes/{id}',   ['uses' => 'MakesController@show',   'as' => 'makes.show']);
 $app->patch('/makes/{id}', ['uses' => 'MakesController@update', 'as' => 'makes.update']);
 
-$app->get('/models', 'ModelsController@index');
-$app->post('/models', 'ModelsController@store');
-$app->get('/models/{id}', 'ModelsController@show');
-$app->patch('/models/{id}', 'ModelsController@update');
+$app->get('/models',        ['uses' => 'ModelsController@index',  'as' => 'models.index']);
+$app->post('/models',       ['uses' => 'ModelsController@store',  'as' => 'models.store']);
+$app->get('/models/{id}',   ['uses' => 'ModelsController@show',   'as' => 'models.show']);
+$app->patch('/models/{id}', ['uses' => 'ModelsController@update', 'as' => 'models.update']);
 
 $app->get('/vehicles', 'VehiclesController@index');
 $app->post('/vehicles', 'VehiclesController@store');
