@@ -11,10 +11,10 @@
 |
 */
 
-$app->get('/makes', 'MakesController@index');
-$app->post('/makes', 'MakesController@store');
-$app->get('/makes/{id}', 'MakesController@show');
-$app->patch('/makes/{id}', 'MakesController@update');
+$app->get('/makes',        ['uses' => 'MakesController@index',  'as' => 'makes.index']);
+$app->post('/makes',       ['uses' => 'MakesController@store',  'as' => 'makes.store']);
+$app->get('/makes/{id}',   ['uses' => 'MakesController@show',   'as' => 'makes.show']);
+$app->patch('/makes/{id}', ['uses' => 'MakesController@update', 'as' => 'makes.update']);
 
 $app->get('/models', 'ModelsController@index');
 $app->post('/models', 'ModelsController@store');
