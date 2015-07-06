@@ -1,6 +1,10 @@
-<?php namespace Autio\Transformers;
+<?php
+namespace Autio\Transformers;
 
-class VehicleTransformer extends Transformer {
+use Autio\Helpers\Helpers;
+
+class VehicleTransformer extends Transformer
+{
 
     /**
      * @var MakeTransformer
@@ -41,7 +45,7 @@ class VehicleTransformer extends Transformer {
         ];
 
         if ($showHref)
-            $data['href'] = get_resource_href('VehiclesController', $vehicle->id);
+            $data['href'] = Helpers::get_resource_href('App\Http\Controllers\VehiclesController', $vehicle->id);
 
         return $data;
     }
