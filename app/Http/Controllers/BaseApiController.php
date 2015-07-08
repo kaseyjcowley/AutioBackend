@@ -1,10 +1,10 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
 
 use Symfony\Component\HttpFoundation\Response as SymResponse;
 
-use Illuminate\Support\Facades\Route;
-
-class BaseApiController extends Controller {
+class BaseApiController extends Controller
+{
 
 	/**
 	 * @var int
