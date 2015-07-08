@@ -2,8 +2,9 @@
 namespace App\Http\Controllers;
 
 use Symfony\Component\HttpFoundation\Response as SymResponse;
+use Laravel\Lumen\Routing\Controller as BaseController;
 
-class BaseApiController extends Controller
+class BaseApiController extends BaseController
 {
 
 	/**
