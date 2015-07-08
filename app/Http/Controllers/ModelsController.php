@@ -17,7 +17,7 @@ class ModelsController extends BaseApiController
   /**
    * @var ModelRepository
    */
-  private $modelRepository;
+  protected $modelRepository;
 
   /**
    * @param ModelRepository $modelRepository
@@ -31,13 +31,18 @@ class ModelsController extends BaseApiController
 
   /**
    * Display a listing of the resource.
-   * GET /models
+   * GET /makes/{id}/models
    *
    * @return Response
    */
-  public function index()
+  public function index($makeId)
   {
-    $models = $this->modelRepository->getAll();
+    try {
+      $models = $this->modelRepository->getByMakeId($makeId);
+    } catch (ModelNotFoundException $e) {
+      return $this->respondNotFound('Make does not exist');
+    }
+
     return $this->respondOk([
       'models' => $this->modelTransformer->transformCollection($models)
     ]);

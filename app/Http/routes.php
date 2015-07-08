@@ -11,15 +11,11 @@
 |
 */
 
-$app->get('/makes',        ['uses' => 'MakesController@index',  'as' => 'makes.index']);
-$app->post('/makes',       ['uses' => 'MakesController@store',  'as' => 'makes.store']);
-$app->get('/makes/{id}',   ['uses' => 'MakesController@show',   'as' => 'makes.show']);
-$app->patch('/makes/{id}', ['uses' => 'MakesController@update', 'as' => 'makes.update']);
+$app->get('/makes',      ['uses' => 'MakesController@index', 'as' => 'makes.index']);
+$app->get('/makes/{id}', ['uses' => 'MakesController@show',  'as' => 'makes.show']);
 
-$app->get('/models',        ['uses' => 'ModelsController@index',  'as' => 'models.index']);
-$app->post('/models',       ['uses' => 'ModelsController@store',  'as' => 'models.store']);
-$app->get('/models/{id}',   ['uses' => 'ModelsController@show',   'as' => 'models.show']);
-$app->patch('/models/{id}', ['uses' => 'ModelsController@update', 'as' => 'models.update']);
+$app->get('/makes/{make_id}/models', ['uses' => 'ModelsController@index', 'as' => 'models.index']);
+$app->get('/models/{id}',            ['uses' => 'ModelsController@show',  'as' => 'models.show']);
 
 $app->get('/vehicles',         ['uses' => 'VehiclesController@index',   'as' => 'vehicles.index']);
 $app->post('/vehicles',        ['uses' => 'VehiclesController@store',   'as' => 'vehicles.store']);

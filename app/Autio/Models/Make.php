@@ -1,9 +1,9 @@
 <?php
 namespace Autio\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as BaseModel;
 
-class Make extends Model
+class Make extends BaseModel
 {
 
   protected $fillable = ['name'];
@@ -13,7 +13,15 @@ class Make extends Model
    */
   public function model()
   {
-    return $this->belongsTo('Model');
+    return $this->belongsTo('Autio\Models\Model');
+  }
+
+  /**
+   * @return mixed
+   */
+  public function models()
+  {
+    return $this->hasMany('Autio\Models\Model');
   }
 
   /**
@@ -21,7 +29,7 @@ class Make extends Model
    */
   public function vehicle()
   {
-    return $this->belongsToMany('Vehicle');
+    return $this->belongsToMany('Autio\Models\Vehicle');
   }
 
 }
