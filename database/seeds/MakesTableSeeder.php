@@ -53,6 +53,8 @@ class MakesTableSeeder extends Seeder
         'Volvo'
       ];
 
+      sort($makes);
+
       foreach ($makes as $make) {
           Make::create(['name' => $make]);
       }
