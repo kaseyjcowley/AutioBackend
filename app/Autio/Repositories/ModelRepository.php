@@ -1,9 +1,11 @@
-<?php namespace Autio\Repositories;
+<?php
+namespace Autio\Repositories;
 
 use Autio\Interfaces\RepositoryInterface;
 use Autio\Models\Model;
 
-class ModelRepository implements RepositoryInterface {
+class ModelRepository implements RepositoryInterface
+{
 
     public function getAll()
     {

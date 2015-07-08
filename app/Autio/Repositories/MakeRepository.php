@@ -1,10 +1,13 @@
-<?php namespace Autio\Repositories;
+<?php
+namespace Autio\Repositories;
 
 use Autio\Interfaces\RepositoryInterface;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Autio\Models\Make;
 
-class MakeRepository implements RepositoryInterface {
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+class MakeRepository implements RepositoryInterface
+{
 
     /**
      * @return mixed

@@ -3,14 +3,16 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVehiclesTable extends Migration {
+class CreateVehiclesTable extends Migration
+{
 
   /**
    * Run the migrations.
    *
    * @return void
    */
-  public function up() {
+  public function up()
+  {
     Schema::create('vehicles', function(Blueprint $table) {
       $table->increments('id');
       $table->smallInteger('year')->nullable();
@@ -28,7 +30,8 @@ class CreateVehiclesTable extends Migration {
    *
    * @return void
    */
-  public function down() {
+  public function down()
+  {
     Schema::drop('vehicles');
   }
 
