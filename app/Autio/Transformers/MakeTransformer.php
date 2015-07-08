@@ -1,8 +1,6 @@
 <?php
 namespace Autio\Transformers;
 
-use App\Helpers\Helpers;
-
 class MakeTransformer extends Transformer
 {
 
@@ -19,7 +17,7 @@ class MakeTransformer extends Transformer
       ];
 
       if ($showHref)
-        $data['href'] = Helpers::get_resource_href('App\Http\Controllers\MakesController', $make->id);
+        $data['href'] = route('makes.show', ['id' => $make->id]);
 
       return $data;
   }

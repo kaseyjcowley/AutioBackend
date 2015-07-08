@@ -12,22 +12,6 @@ class BaseApiController extends Controller {
 	protected $statusCode = SymResponse::HTTP_OK;
 
 	/**
-	 * @var string
-	 */
-	protected $showResourceRoute;
-
-	function __construct()
-	{
-		// Retrieves all routes
-		$routes = Route::getRoutes();
-		// Retrieves the 'CurrentController@show' string in order to find the name associated with the show action
-		$resourceShowAction = sprintf("%s@show", get_class($this));
-
-		// Get the show route name from the action
-		$this->showResourceRoute = $routes->getByAction($resourceShowAction)->getName();
-	}
-
-	/**
 	 * @return mixed
 	 */
 	public function getStatusCode()
@@ -44,17 +28,6 @@ class BaseApiController extends Controller {
 		$this->statusCode = $statusCode;
 
 		return $this;
-	}
-
-	/**
-	 * Gets the show resource url to return in the Location header. Used to retrieve a newly created resource.
-	 *
-	 * @param  int $resourceId - The id of the newly created resource
-	 * @return string
-	 */
-	public function getResourcePath($resourceId)
-	{
-		return route($this->showResourceRoute, $resourceId);
 	}
 
 	/**
@@ -79,9 +52,8 @@ class BaseApiController extends Controller {
 		$href = $this->getResourcePath($resourceId);
 
 		$data = ['href' => $href];
-		$headers = ['Location' => $href];
 
-		return $this->setStatusCode(SymResponse::HTTP_CREATED)->respond($data, $headers);
+		return $this->setStatusCode(SymResponse::HTTP_CREATED)->respond($data);
 	}
 
 	/**

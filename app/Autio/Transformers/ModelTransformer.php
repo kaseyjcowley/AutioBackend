@@ -1,6 +1,5 @@
-<?php namespace Autio\Transformers;
-
-use App\Helpers\Helpers;
+<?php
+namespace Autio\Transformers;
 
 class ModelTransformer extends Transformer
 {
@@ -18,9 +17,9 @@ class ModelTransformer extends Transformer
     ];
 
     if ($showHref)
-    $data['href'] = Helpers::get_resource_href('App\Http\Controllers\ModelsController', $model->id);
+      $data['href'] = route('models.show', ['id' => $model->id]);
 
     return $data;
   }
-  
+
 }

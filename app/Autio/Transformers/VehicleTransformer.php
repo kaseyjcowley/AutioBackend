@@ -45,7 +45,7 @@ class VehicleTransformer extends Transformer
         ];
 
         if ($showHref)
-            $data['href'] = Helpers::get_resource_href('App\Http\Controllers\VehiclesController', $vehicle->id);
+            $data['href'] = route('vehicles.show', ['id' => $vehicle->id]);
 
         return $data;
     }
