@@ -21,8 +21,8 @@ $app->post('/models',       ['uses' => 'ModelsController@store',  'as' => 'model
 $app->get('/models/{id}',   ['uses' => 'ModelsController@show',   'as' => 'models.show']);
 $app->patch('/models/{id}', ['uses' => 'ModelsController@update', 'as' => 'models.update']);
 
-$app->get('/vehicles',         ['uses' => 'VehiclesController@index',   'as' => 'vehicles.index');
-$app->post('/vehicles',        ['uses' => 'VehiclesController@store',   'as' => 'vehicles.store');
-$app->get('/vehicles/{id}',    ['uses' => 'VehiclesController@show',    'as' => 'vehicles.show');
-$app->patch('/vehicles/{id}',  ['uses' => 'VehiclesController@update',  'as' => 'vehicles.update');
-$app->delete('/vehicles/{id}', ['uses' => 'VehiclesController@destroy', 'as' => 'vehicles.destroy');
+$app->get('/vehicles',         ['uses' => 'VehiclesController@index',   'as' => 'vehicles.index']);
+$app->post('/vehicles',        ['uses' => 'VehiclesController@store',   'as' => 'vehicles.store']);
+$app->get('/vehicles/{id}',    ['uses' => 'VehiclesController@show',    'as' => 'vehicles.show']);
+$app->patch('/vehicles/{id}',  ['uses' => 'VehiclesController@update',  'as' => 'vehicles.update']);
+$app->delete('/vehicles/{id}', ['uses' => 'VehiclesController@destroy', 'as' => 'vehicles.destroy']);
