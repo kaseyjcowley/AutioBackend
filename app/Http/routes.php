@@ -22,3 +22,5 @@ $app->post('/vehicles',        ['uses' => 'VehiclesController@store',   'as' => 
 $app->get('/vehicles/{id}',    ['uses' => 'VehiclesController@show',    'as' => 'vehicles.show']);
 $app->patch('/vehicles/{id}',  ['uses' => 'VehiclesController@update',  'as' => 'vehicles.update']);
 $app->delete('/vehicles/{id}', ['uses' => 'VehiclesController@destroy', 'as' => 'vehicles.destroy']);
+
+$app->get('/vehicles/{id}/service-records', ['uses' => 'ServiceRecordsController@index', 'as' => 'service_records.index']);
