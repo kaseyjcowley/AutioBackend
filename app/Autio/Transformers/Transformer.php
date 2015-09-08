@@ -1,4 +1,5 @@
-<?php namespace Autio\Transformers;
+<?php 
+namespace Autio\Transformers;
 
 use Illuminate\Database\Eloquent\Collection;
 
@@ -10,7 +11,7 @@ abstract class Transformer {
 	 */
 	public function transformCollection(Collection $items, $showHref = false)
 	{
-		$data = $items->map(function ($item) use($showHref) {
+		$data = $items->map(function ($item) use ($showHref) {
 			return $this->transform($item, $showHref);
 		})->toArray();
 
