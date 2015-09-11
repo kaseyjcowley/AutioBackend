@@ -19,3 +19,16 @@ $factory->define(App\User::class, function ($faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Autio\Models\ServiceRecord::class, function ($faker) {
+    $vehicle_ids = Autio\Models\Vehicle::lists('id')->all();
+    
+    return [
+        'vehicle_id' => $faker->randomElement($vehicle_ids),
+        'type_id' => $faker->randomElement([1,2,3]),
+        'other_description' => $faker->sentence(),
+        'mileage_performed_at' => $faker->numberBetween(100, 200000),
+        'performed_on' => $faker->dateTimeThisYear(),
+        'notes' => $faker->paragraph()
+    ];
+});

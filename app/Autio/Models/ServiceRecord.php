@@ -27,6 +27,15 @@ class ServiceRecord extends BaseModel
   }
 
   /**
+   * Returns the vehicle
+   * @return Illuminate\Database\Eloquent\Relations\belongsTo
+   */
+  public function vehicle()
+  {
+    return $this->belongsTo(Vehicle::class);
+  }
+
+  /**
    * Returns the service record type
    * @return Illuminate\Database\Eloquent\Relations\belongsTo
    */
