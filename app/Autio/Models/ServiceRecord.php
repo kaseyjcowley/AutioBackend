@@ -26,4 +26,13 @@ class ServiceRecord extends BaseModel
       ->orderBy('performed_on', 'desc');
   }
 
+  /**
+   * Returns the service record type
+   * @return Illuminate\Database\Eloquent\Relations\belongsTo
+   */
+  public function type()
+  {
+    return $this->belongsTo(ServiceType::class);
+  }
+
 }
