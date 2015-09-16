@@ -6,20 +6,14 @@ class ModelTransformer extends Transformer
 
   /**
    * @param $model
-   * @param $showHref
    * @return mixed
    */
-  public function transform($model, $showHref = false)
+  public function transform($model)
   {
-    $data = [
+    return [
       'id'   => $model->id,
       'name' => $model->name
     ];
-
-    if ($showHref)
-      $data['href'] = route('models.show', ['id' => $model->id]);
-
-    return $data;
   }
 
 }

@@ -13,12 +13,12 @@ class Model extends BaseModel
    */
   public function make()
   {
-    return $this->hasOne('Autio\Models\Make', 'id', 'make_id');
+    return $this->belongsTo(Make::class);
   }
 
   public function vehicle()
   {
-    return $this->belongsTo('Autio\Models\Vehicle');
+    return $this->hasOne(Vehicle::class);
   }
 
 }

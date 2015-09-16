@@ -6,20 +6,14 @@ class MakeTransformer extends Transformer
 
   /**
    * @param $make
-   * @param $showHref
    * @return mixed
    */
-  public function transform($make, $showHref = false)
+  public function transform($make)
   {
-      $data = [
-        'id'   => $make->id,
-        'name' => $make->name
-      ];
-
-      if ($showHref)
-        $data['href'] = route('makes.show', ['id' => $make->id]);
-
-      return $data;
+    return [
+      'id'   => $make->id,
+      'name' => $make->name
+    ];
   }
 
 }

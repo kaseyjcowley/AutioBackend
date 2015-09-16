@@ -7,47 +7,19 @@ class VehicleTransformer extends Transformer
 {
 
     /**
-     * @var MakeTransformer
-     */
-    protected $makeTransformer;
-
-    /**
-     * @var ModelTransformer
-     */
-    protected $modelTransformer;
-
-    /**
-     * @param MakeTransformer $makeTransformer
-     * @param ModelTransformer $modelTransformer
-     */
-    function __construct(MakeTransformer $makeTransformer, ModelTransformer $modelTransformer)
-    {
-        $this->makeTransformer  = $makeTransformer;
-        $this->modelTransformer = $modelTransformer;
-    }
-
-    /**
      * @param array $vehicle
-     * @param boolean $showHref
      * @return array
      */
-    public function transform($vehicle, $showHref = false)
+    public function transform($vehicle)
     {
-        $data = [
-            'id'      => $vehicle->id,
-            'year'    => $vehicle->year,
-            'mileage' => $vehicle->mileage,
-            'vin'     => $vehicle->vin,
-            'links'   => [
-                'make'  => $this->makeTransformer->transform($vehicle->model->make, true),
-                'model' => $this->modelTransformer->transform($vehicle->model, true),
-            ]
-        ];
-
-        if ($showHref)
-            $data['href'] = route('vehicles.show', ['id' => $vehicle->id]);
-
-        return $data;
+      return [
+        'id'      => $vehicle->id,
+        'year'    => $vehicle->year,
+        'mileage' => $vehicle->mileage,
+        'vin'     => $vehicle->vin,
+        'make'  => (new MakeTransformer)->transform($vehicle->model->make),
+        'model' => (new ModelTransformer)->transform($vehicle->model),
+      ];
     }
 
-}
+  }

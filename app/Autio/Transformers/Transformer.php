@@ -9,10 +9,10 @@ abstract class Transformer {
 	 * @param $items
 	 * @return array
 	 */
-	public function transformCollection(Collection $items, $showHref = false)
+	public function transformCollection(Collection $items)
 	{
-		$data = $items->map(function ($item) use ($showHref) {
-			return $this->transform($item, $showHref);
+		$data = $items->map(function ($item) {
+			return $this->transform($item);
 		})->toArray();
 
 		return $data;
@@ -22,6 +22,6 @@ abstract class Transformer {
 	 * @param $item
 	 * @return mixed
 	 */
-	public abstract function transform($item, $showHref = false);
+	public abstract function transform($item);
 
 }
