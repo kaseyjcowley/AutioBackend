@@ -15,7 +15,6 @@ $app->get('/makes',      ['uses' => 'MakesController@index', 'as' => 'makes.inde
 $app->get('/makes/{id}', ['uses' => 'MakesController@show',  'as' => 'makes.show']);
 
 $app->get('/makes/{make_id}/models', ['uses' => 'ModelsController@index', 'as' => 'models.index']);
-$app->get('/models/{id}',            ['uses' => 'ModelsController@show',  'as' => 'models.show']);
 
 $app->get('/vehicles',         ['uses' => 'VehiclesController@index',   'as' => 'vehicles.index']);
 $app->post('/vehicles',        ['uses' => 'VehiclesController@store',   'as' => 'vehicles.store']);
