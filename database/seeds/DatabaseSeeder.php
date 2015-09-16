@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder 
@@ -14,13 +13,18 @@ class DatabaseSeeder extends Seeder
 	 */
 	public function run()
 	{
+		$seeders = [
+			'MakesTableSeeder',
+			'ModelsTableSeeder',
+			'VehiclesTableSeeder',
+			'ServiceTypeSeeder',
+			'ServiceRecordsSeeder'
+		];
+
 		Model::unguard();
 
-		$this->call('MakesTableSeeder');
-		$this->call('ModelsTableSeeder');
-		$this->call('VehiclesTableSeeder');
-		$this->call('ServiceTypeSeeder');
-		$this->call('ServiceRecordsSeeder');
+		foreach ($seeders as $seeder)
+			$this->call($seeder);
 	}
 
 }
