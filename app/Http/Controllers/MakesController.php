@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 use Autio\Repositories\MakeRepository;
 use Autio\Transformers\MakeTransformer;
-
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class MakesController extends BaseApiController
@@ -15,7 +14,7 @@ class MakesController extends BaseApiController
   protected $makeTransformer;
 
   /**
-   * @var MakeRepository
+   * @var Autio\Repositories\MakeRepository
    */
   protected $makeRepository;
 
