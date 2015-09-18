@@ -79,7 +79,12 @@ $app->singleton(
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
+$app->register(Clockwork\Support\Lumen\ClockworkServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+$app->middleware([
+  Clockwork\Support\Lumen\ClockworkMiddleware::class
+]);
 
 /*
 |--------------------------------------------------------------------------
