@@ -37,7 +37,7 @@ class MakesController extends BaseApiController
    */
   public function index()
   {
-    $makes = $this->makeRepository->getAll();
+    $makes = $this->makeRepository->all();
     return $this->respondOk([
       'makes' => $this->makeTransformer->transformCollection($makes)
     ]);
@@ -53,7 +53,7 @@ class MakesController extends BaseApiController
   public function show($id)
   {
     try {
-      $make = $this->makeRepository->get($id);
+      $make = $this->makeRepository->find($id);
     } catch (ModelNotFoundException $e) {
       return $this->respondNotFound('Make does not exist');
     }

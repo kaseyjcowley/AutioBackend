@@ -16,16 +16,16 @@ class ModelsController extends BaseApiController
    *
    * @return Response
    */
-  public function index($makeId)
+  public function index(ModelRepository $repo, ModelTransformer $transformer, $makeId)
   {
     try {
-      $models = (new ModelRepository)->getByMakeId($makeId);
+      $models = $repo->findBy('make_id', $makeId);
     } catch (ModelNotFoundException $e) {
       return $this->respondNotFound('Make does not exist');
     }
 
     return $this->respondOk([
-      'models' => (new ModelTransformer)->transformCollection($models)
+      'models' => $transformer->transformCollection($models)
     ]);
   }
 

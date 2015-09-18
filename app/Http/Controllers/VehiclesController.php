@@ -6,24 +6,32 @@ use Autio\Validators\VehicleValidator;
 use Autio\Repositories\VehicleRepository;
 use Autio\Exceptions\ValidationException;
 use Autio\Models\Vehicle;
-
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Response;
 
 class VehiclesController extends BaseApiController
 {
 
+  protected $repo;
+  protected $transformer;
+
+  public function __construct(VehicleRepository $repo, VehicleTransformer $transformer)
+  {
+    $this->repo = $repo;
+    $this->transformer = $transformer;
+  }
+
   /**
    * Display a listing of the resource.
-   * GET /vehicle
+   * GET /vehicles
    *
    * @return Response
    */
-  public function index(VehicleTransformer $transformer)
+  public function index()
   {
-    $vehicles = Vehicle::with('model.make')->get();
     return $this->respondOk([
-      'vehicles' => $transformer->transformCollection($vehicles)
+      'vehicles' => $this->transformer->transformCollection(
+        $this->repo->with('model.make')->all()
+      )
     ]);
   }
 
@@ -44,7 +52,7 @@ class VehiclesController extends BaseApiController
    *
    * @return Response
    */
-  public function store(VehicleValidator $validator, VehicleRepository $repository)
+  public function store(VehicleValidator $validator)
   {
     try {
       $validator->validate(Input::all());
@@ -52,7 +60,7 @@ class VehiclesController extends BaseApiController
       return $this->respondBadRequest($e->getMessage(), $e->getErrors());
     }
 
-    $newVehicleId = $repository->create(Input::all());
+    $newVehicleId = $this->repo->create(Input::all());
 
     return $this->respondCreated($newVehicleId);
   }
@@ -64,16 +72,16 @@ class VehiclesController extends BaseApiController
    * @param  int  $id
    * @return Response
    */
-  public function show(VehicleTransformer $transformer, $id)
+  public function show($id)
   {
     try {
-      $vehicle = Vehicle::findOrFail($id);
+      $vehicle = $this->repo->find($id);
     } catch (ModelNotFoundException $e) {
       return $this->respondNotFound('Vehicle does not exist');
     }
 
     return $this->respondOk([
-      'vehicle' => $transformer->transform($vehicle)
+      'vehicle' => $this->transformer->transform($vehicle)
     ]);
   }
 
