@@ -23,6 +23,11 @@ abstract class BaseRepository implements RepositoryInterface
   protected $model_instance;
 
   /**
+   * @var array
+   */
+  protected $with;
+
+  /**
    * @param Illuminate\Container\Container $app
    */
   public function __construct(App $app)
@@ -32,13 +37,29 @@ abstract class BaseRepository implements RepositoryInterface
   }
 
   /**
+   * Define relationships to eager load
+   * @param  array $relations
+   * @return $this
+   */
+  public function with(...$relations)
+  {
+    $this->with = $relations;
+    return $this;
+  }
+
+  /**
    * Get all model records
    * @param  array $columns
    * @return mixed
    */
   public function all($columns = ['*'])
   {
-    return $this->model_instance->all($columns);
+    if (is_null($this->with))
+      return $this->model_instance->all($columns);
+
+    return $this->model_instance
+      ->with($this->with)
+      ->get($columns);
   }
 
   /**

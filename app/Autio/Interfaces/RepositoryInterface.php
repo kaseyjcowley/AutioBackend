@@ -2,6 +2,7 @@
 namespace Autio\Interfaces;
 
 interface RepositoryInterface {
+  public function with(...$relations);
   public function all($columns = ['*']);
   public function paginate($per_page = 10, $columns = ['*']);
   public function find($id, $columns = ['*']);
